@@ -34,7 +34,7 @@ const Member = (props) => {
 };
 
 const About = () => {
-  document.title = "About | Optic eSports"
+  document.title = "About | CineSense"
   const team = [
     {
       id: 1,

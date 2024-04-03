@@ -3,7 +3,7 @@ import { Icon } from "semantic-ui-react";
 import Appointment from "./Appointment";
 
 const Contact = () => {
-  document.title = "Contact | Optic eSports"
+  document.title = "Contact |  CineSense"
   const contactlist = [
     {
       icon: "phone",

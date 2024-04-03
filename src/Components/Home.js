@@ -7,11 +7,10 @@ import monster from "../Assets/partners/monster.png";
 import corsair from "../Assets/partners/corsair.svg";
 import amd from "../Assets/partners/amd.png";
 import redbull from "../Assets/partners/redbull.png";
-import { Icon } from "semantic-ui-react";
 import Appointment from "./Appointment";
 
 const Home = () => {
-  document.title = "Home | Optic eSports"
+  document.title = "Home | CineSense"
   const partners = [
     {
       name: "elgato",
