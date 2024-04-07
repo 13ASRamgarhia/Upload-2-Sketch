@@ -195,6 +195,31 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      <div className="pt-10">
+        <p className="text-headingColor text-2xl font-medium font-inter px-4 laptop:px-48">
+          OUR LOCATION
+        </p>
+        <div className="space-y-1 px-4 laptop:px-48">
+          <div className="h-1 w-44 bg-logoColor"></div>
+          <div className="h-1 w-36 bg-logoColor"></div>
+        </div>
+
+        <div className="py-10 px-4 flex flex-col tablet:flex-row space-x-0 tablet:space-x-10 space-y-4 tablet:space-y-0">
+          <div className="flex w-full px-4 laptop:px-48">
+            <div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45992.187244567715!2d-78.94110199697552!3d43.90737903791604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d51b902fedb973%3A0xdd6091694035e8a1!2sDurham%20College!5e0!3m2!1sen!2sca!4v1712139651605!5m2!1sen!2sca"
+              className="border-none w-full h-full"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Map"
+            />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

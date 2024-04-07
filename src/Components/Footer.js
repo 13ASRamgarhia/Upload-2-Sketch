@@ -42,9 +42,9 @@ const Footer = () => {
 
         <div className="flex flex-col">
           <div className="text-white mb-3"><p>CONTACT US</p></div>
-          <div className='my-1 flex space-x-3'><Icon name='phone' className='text-[#aaa6c3]'/><p className='text-[#aaa6c3]'>+91-99999-99999</p></div>
-          <div className='my-1 flex space-x-3'><Icon name='mail' className='text-[#aaa6c3]'/><p className='text-[#aaa6c3]'>optic@esports.com</p></div>
-          <div className='my-1 flex space-x-3'><Icon name='whatsapp' className='text-[#aaa6c3]'/><p className='text-[#aaa6c3]'>+91-90000-00000</p></div>
+          <div className='my-1 flex space-x-3'><Icon name='phone' className='text-[#aaa6c3]'/><p className='text-[#aaa6c3]'>+1-444-444-4444</p></div>
+          <div className='my-1 flex space-x-3'><Icon name='mail' className='text-[#aaa6c3]'/><p className='text-[#aaa6c3]'>info@cinesense.com</p></div>
+          <div className='my-1 flex space-x-3'><Icon name='whatsapp' className='text-[#aaa6c3]'/><p className='text-[#aaa6c3]'>+1-444-444-4444</p></div>
           <div className='my-1 flex space-x-3'><Icon name='instagram' className='text-[#aaa6c3]'/><p className='text-[#aaa6c3]'>abc_xyz</p></div>
         </div>
       </div>

@@ -4,15 +4,16 @@ import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import ErrorPage from './Components/404';
-import Contact from './Components/Contact';
 import About from './Components/About';
 import LoadingBar from 'react-top-loading-bar';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Signup from './Components/Signup';
 
 function App() {
   const [progress, setProgress] = useState(0)
   const location = useLocation()
+  //const [isLoggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
     setProgress(10)
@@ -31,7 +32,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={ <Home /> } />
         <Route exact path="/About" element={ <About /> } />
-        <Route exact path="/Contact" element={ <Contact /> } />
+        <Route exact path="/Signup" element={ <Signup /> } />
         <Route exact path="*" element={ <ErrorPage /> } />
       </Routes>
 

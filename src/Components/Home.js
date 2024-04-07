@@ -2,37 +2,10 @@ import React from "react";
 import aboutIllustration from "../Assets/illustrations/aboutIllustartion.svg";
 import { Link } from "react-router-dom";
 
-import elgato from "../Assets/partners/elgato.png";
-import monster from "../Assets/partners/monster.png";
-import corsair from "../Assets/partners/corsair.svg";
-import amd from "../Assets/partners/amd.png";
-import redbull from "../Assets/partners/redbull.png";
 import Appointment from "./Appointment";
 
 const Home = () => {
   document.title = "Home | CineSense"
-  const partners = [
-    {
-      name: "elgato",
-      icon: elgato,
-    },
-    {
-      name: "monster",
-      icon: monster,
-    },
-    {
-      name: "corsair",
-      icon: corsair,
-    },
-    {
-      name: "redbull",
-      icon: redbull,
-    },
-    {
-      name: "amd",
-      icon: amd,
-    },
-  ];
 
   const services = [
     {
@@ -165,28 +138,6 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="px-4 laptop:px-48 pt-10">
-        <p className="text-headingColor text-2xl font-medium font-inter">
-          OUR PARTNERS
-        </p>
-        <div className="space-y-1">
-          <div className="h-1 w-44 bg-logoColor"></div>
-          <div className="h-1 w-36 bg-logoColor"></div>
-        </div>
-        <div className="grid grid-cols-autofit gap-10 px-4 laptop:px-10 mt-10">
-          {partners.map((partner) => {
-            return (
-              <div className="grid grid-cols-autofit gap-4" key={partner.name}>
-                <img
-                  src={partner.icon}
-                  alt={partner.name}
-                  className="aspect-video w-36"
-                />
-              </div>
-            );
-          })}
-        </div>
-      </div>
     </div>
   );
 };

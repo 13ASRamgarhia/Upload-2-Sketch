@@ -12,10 +12,6 @@ const Navbar = () => {
     document.getElementById("slideover").classList.toggle("translate-x-full");
   }
 
-  const handleSearch = () => {
-    
-  }
-
   return (
     <>
       <nav className="navbar bg-bgColor fixed w-[100%] z-50 px-4 laptop:px-10 py-2 my-auto shadow-lg">
@@ -25,27 +21,19 @@ const Navbar = () => {
             <p className="brandName font-bold font-inter">Cine<span className="text-logoColor">Sense</span></p>
           </div>
           <div className="nav-items-div space-x-10 text-xl my-auto hidden laptop:flex">
-            <div className="nav-item">
+            <div className="nav-item px-2 py-2">
               <Link to="/" className={`text-gray-600 hover:text-black focus:text-current font-montserrat ${location.pathname === "/" ? "underline underline-offset-2" : ""} transition-all duration-150`}>Home</Link>
             </div>
-            <div className="nav-item">
+            <div className="nav-item px-4 py-2">
               <Link to="/About" className={`text-gray-600 hover:text-black focus:text-current font-montserrat ${location.pathname === "/About" ? "underline underline-offset-2" : ""} transition-all duration-150`}>About</Link>
             </div>
-            <div className="nav-item">
-              <Link to="/Contact" className={`text-gray-600 hover:text-black focus:text-current font-montserrat ${location.pathname === "/Contact" ? "underline underline-offset-2" : ""} transition-all duration-150`}>Contact</Link>
-            </div>
-            <div>
-              <form className="my-auto flex space-x-3">
-                <input
-                  className="border border-gray-400 focus:border-headingColor rounded-md w-46 px-4 py-1 text-sm hover:outline-none focus:outline-none"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button className="" type="button">
-                    <Icon name="search" className="w-10" />
-                </button>
-              </form>
+            <div className="flex space-x-4">
+              <div className="nav-item px-4 py-1 rounded-xl border-2 border-white hover:border-2 hover:border-logoColor">
+                <Link to="/Login" className={`text-gray-600 hover:text-black focus:text-current font-montserrat transition-all duration-150`}>Login</Link>
+              </div>
+              <div className="nav-item text-gray-50 bg-logoColor hover:bg-transparent hover:text-black px-4 py-1 rounded-xl border-2 border-logoColor">
+                <Link to="/Signup" className={`hover:text-black focus:text-current font-montserrat transition-all duration-150`}>Sign up</Link>
+              </div>
             </div>
           </div>
           <div onClick={toggleHamburger} className="flex flex-col laptop:hidden my-auto" id="">
@@ -78,19 +66,6 @@ const Navbar = () => {
               <Link onClick={toggleHamburger} to="/Contact" className="linkRouter no-underline hover:text-white hover:no-underline">
                 <div className="HBContentItem text-white text-2xl text-center py-5 hover:bg-HBhoverColor">Contact</div>
               </Link>
-              <div className="flex justify-center py-5">
-                <form onSubmit={handleSearch} className="my-auto flex space-x-3">
-                    <input
-                    className="border border-white focus:border-headingColor rounded-md w-52 px-4 py-2 text-sm hover:outline-none focus:outline-none text-black"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                    />
-                    <button className="" type="button">
-                        <Icon name="search" size="large" className="text-white" />
-                    </button>
-                </form>
-              </div>
             </div>
           </div>
         </div>
