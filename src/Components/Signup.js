@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
+import axios from "axios";
 
 const Signup = () => {
   document.title = "Create Account | CineSense"
@@ -62,11 +63,37 @@ const Signup = () => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     clearError();
     if(!handleValidation()){
         console.log(user)
+
+      try {
+        console.log("1")
+          const res = await axios.post(`https://cinesense-hgch.onrender.com/sign_up`, {
+          name: user.fullName,
+          email: user.email,
+          password: user.password,
+        }
+        );
+
+        console.log("2")
+        const statusCode = res.data.statusCode
+        if(statusCode === 200){
+          console.log("3")
+          setUser({ fullName: "", email: "", password: "", confirmPassword: "" });
+          console.log("done")
+        }
+        else if(statusCode === 404){
+          console.log("Error Occured")
+        }
+      } catch (err) {
+        console.log("4")
+        console.log(err.message);
+      }
+
+      clearForm();
     }
   }
     return (
