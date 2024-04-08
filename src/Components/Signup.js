@@ -80,6 +80,8 @@ const Signup = () => {
 
         console.log("2")
         const statusCode = res.data.statusCode
+        console.log(statusCode)
+        console.log(res)
         if(statusCode === 200){
           console.log("3")
           setUser({ fullName: "", email: "", password: "", confirmPassword: "" });
