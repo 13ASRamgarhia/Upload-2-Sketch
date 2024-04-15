@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import loginContext from "./loginContext";
 
 const LoginState = (props) => {
-    const [isLoggedIn, setLoggedIn] = useState(true)
+    const [isLoggedIn, setLoggedIn] = useState(false)
     const [darkMode, setDarkMode] = useState(false)
 
     return(
