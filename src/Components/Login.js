@@ -46,7 +46,7 @@ const Login = () => {
         }
         );
 
-        const statusCode = res.data.statusCode
+        const statusCode = res.request.status
         console.log(res)
         if(statusCode === 200){
           setUser({ email: "", password: "" });
