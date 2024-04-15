@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../Assets/logo.png"
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
+import loginContext from "../Context/loginContext";
 
 const Navbar = () => {
   const location = useLocation()
+  const { isLoggedIn, setLoggedIn } = useContext(loginContext)
   
   const toggleHamburger = () => {
     document.getElementById("slideoverBG").classList.toggle("invisible");
     document.getElementById("slideroverContainer").classList.toggle("invisible");
     document.getElementById("slideover").classList.toggle("translate-x-full");
+  }
+
+  const handleLogout = () => {
+    setLoggedIn(false)
   }
 
   return (
@@ -26,14 +32,24 @@ const Navbar = () => {
             <div className="nav-item px-4 py-2">
               <Link to="/About" className={`text-gray-600 hover:text-black focus:text-current font-montserrat ${location.pathname === "/About" ? "underline underline-offset-2" : ""} transition-all duration-150`}>About</Link>
             </div>
-            <div className="flex space-x-4">
-              <div className="nav-item px-4 py-1 rounded-xl border-2 border-white hover:border-2 hover:border-logoColor">
-                <Link to="/Login" className={`text-gray-600 hover:text-black focus:text-current font-montserrat transition-all duration-150`}>Login</Link>
+            {
+              isLoggedIn ?
+              <div>
+                <div className="nav-item px-4 py-1 rounded-xl hover:cursor-pointer">
+                  <div onClick={handleLogout} className={`text-gray-600 underline hover:text-black focus:text-current font-montserrat transition-all duration-150`}>Logout</div>
+                </div>
               </div>
-              <div className="nav-item text-gray-50 bg-logoColor hover:bg-transparent hover:text-black px-4 py-1 rounded-xl border-2 border-logoColor">
-                <Link to="/Signup" className={`hover:text-black focus:text-current font-montserrat transition-all duration-150`}>Sign up</Link>
+              :
+              <div className="flex space-x-4">
+                <div className="nav-item px-4 py-1 rounded-xl border-2 border-white hover:border-2 hover:border-logoColor">
+                  <Link to="/Login" className={`text-gray-600 hover:text-black focus:text-current font-montserrat transition-all duration-150`}>Login</Link>
+                </div>
+                <div className="nav-item text-gray-50 bg-logoColor hover:bg-transparent hover:text-black px-4 py-1 rounded-xl border-2 border-logoColor">
+                  <Link to="/Signup" className={`hover:text-black focus:text-current font-montserrat transition-all duration-150`}>Sign up</Link>
+                </div>
               </div>
-            </div>
+            }
+
           </div>
           <div onClick={toggleHamburger} className="flex flex-col laptop:hidden my-auto" id="">
             <div className={`hamburger space-y-1`}>

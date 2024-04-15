@@ -10,11 +10,11 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Signup from './Components/Signup';
 import Login from './Components/Login';
+import LoginState from './Context/LoginState';
 
 function App() {
   const [progress, setProgress] = useState(0)
   const location = useLocation()
-  //const [isLoggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
     setProgress(10)
@@ -23,6 +23,7 @@ function App() {
 
   return (
     <div className="bg-bgColor min-h-screen min-w-[100%]">
+      <LoginState>
       <Navbar />
       <LoadingBar
         height="3px"
@@ -39,6 +40,7 @@ function App() {
       </Routes>
 
       <Footer />
+      </LoginState>
     </div>
   );
 }

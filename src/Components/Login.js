@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
 import axios from "axios";
+import loginContext from "../Context/loginContext";
 
 const Login = () => {
   document.title = "Login | CineSense"
+
+  const context = useContext(loginContext)
+  const { setLoggedIn } = context
+
     const [loading, setLoading] = useState(false)
     const [user,setUser] = useState({
     email:"",password:""
@@ -45,7 +50,8 @@ const Login = () => {
         console.log(res)
         if(statusCode === 200){
           setUser({ email: "", password: "" });
-          console.log("done")
+          setLoggedIn(true)
+          console.log("logged in")
         }
         else if(statusCode === 404){
           console.log("Error Occured")
@@ -57,6 +63,7 @@ const Login = () => {
       setLoading(false)
       clearForm();
   }
+
     return (
     <div className="min-h-screen flex flex-col justify-center items-center">
       <div className="w-full laptop:w-[50%]">
