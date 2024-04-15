@@ -116,9 +116,9 @@ const Home = () => {
           <div className="h-1 w-44 bg-logoColor"></div>
           <div className="h-1 w-36 bg-logoColor"></div>
         </div>
-        <div className="py-10 px-4 laptop:px-48 flex flex-col tablet:flex-row space-x-0 tablet:space-x-10 space-y-4 tablet:space-y-0">
-          <div className="flex justify-center w-full">
-            <div className="grid grid-cols-autofit gap-10 px-4 laptop:px-10 mt-10">
+        <div className="py-10 px-4 flex flex-col tablet:flex-row space-x-0 tablet:space-x-10 space-y-4 tablet:space-y-0">
+          <div className="flex w-full">
+            <div className="grid grid-cols-autofit w-full justify-center items-center gap-10 px-4 laptop:px-10 mt-10">
               {services.map((service) => {
                 return (
                   <div className="grid grid-cols-autofit gap-10" key={service.name}>

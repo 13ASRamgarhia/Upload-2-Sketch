@@ -17,8 +17,7 @@ const Navbar = () => {
       <nav className="navbar bg-bgColor fixed w-[100%] z-50 px-4 laptop:px-10 py-2 my-auto shadow-lg">
         <div className="w-full flex justify-between">
           <div className="brand-div text-3xl flex space-x-2 laptop:space-x-3">
-            <img src={logo} alt="logo" className="w-10 h-10" />
-            <p className="brandName font-bold font-inter">Cine<span className="text-logoColor">Sense</span></p>
+            <Link to="/" className="text-3xl flex space-x-2 laptop:space-x-3"><img src={logo} alt="logo" className="w-10 h-10" /><p className="brandName font-bold font-inter text-black hover:text-black">Cine<span className="text-logoColor hover:text-logoColor">Sense</span></p></Link>
           </div>
           <div className="nav-items-div space-x-10 text-xl my-auto hidden laptop:flex">
             <div className="nav-item px-2 py-2">

@@ -9,6 +9,7 @@ import LoadingBar from 'react-top-loading-bar';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Signup from './Components/Signup';
+import Login from './Components/Login';
 
 function App() {
   const [progress, setProgress] = useState(0)
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/" element={ <Home /> } />
         <Route exact path="/About" element={ <About /> } />
         <Route exact path="/Signup" element={ <Signup /> } />
+        <Route exact path="/Login" element={ <Login /> } />
         <Route exact path="*" element={ <ErrorPage /> } />
       </Routes>
 

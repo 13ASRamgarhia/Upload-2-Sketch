@@ -10,13 +10,6 @@ const Member = (props) => {
       <div
         className={`card bg-white rounded-3xl card-side p-1 desktop:p-3 shadow-xl w-72`}
       >
-        <figure className="w-full flex justify-center">
-          <img
-            src={avatar}
-            className="aspect-square w-36 h-32 rounded-full px-4"
-            alt="Movie"
-          />
-        </figure>
         <div className="card-body mt-4">
             <div className={`card-title px-4 flex justify-center`}>
               <p className={`text-2xl px-4`}>{first_name} {last_name}</p>
@@ -38,11 +31,10 @@ const About = () => {
   const team = [
     {
       id: 1,
-      email: "george.bluth@reqres.in",
+      email: "amandeep.singh36@dcmail.ca",
       first_name: "Amandeep",
       last_name: "Singh",
       sid: 100949940,
-      avatar: "https://reqres.in/img/faces/1-image.jpg",
     },
     {
       id: 2,
@@ -50,7 +42,6 @@ const About = () => {
       first_name: "Angad",
       last_name: "Singh",
       sid: 100949940,
-      avatar: "https://reqres.in/img/faces/2-image.jpg",
     },
     {
       id: 3,
@@ -58,7 +49,6 @@ const About = () => {
       first_name: "Jatin",
       last_name: "Sharma",
       sid: 100949940,
-      avatar: "https://reqres.in/img/faces/3-image.jpg",
     },
     {
       id: 4,
@@ -66,7 +56,6 @@ const About = () => {
       first_name: "Kunwarpal",
       last_name: "Singh",
       sid: 100949940,
-      avatar: "https://reqres.in/img/faces/4-image.jpg",
     },
     {
       id: 5,
@@ -74,7 +63,6 @@ const About = () => {
       first_name: "Vaibhav",
       last_name: "Sharma",
       sid: 100949940,
-      avatar: "https://reqres.in/img/faces/5-image.jpg",
     },
   ];
 
