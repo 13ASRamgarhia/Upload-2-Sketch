@@ -40,7 +40,7 @@ const Login = () => {
     setLoading(true)
     clearError();
       try {
-          const res = await axios.get(`https://cinesense-hgch.onrender.com/login`, {
+          const res = await axios.post(`https://cinesense-hgch.onrender.com/login`, {
           email: user.email,
           password: user.password,
         }
