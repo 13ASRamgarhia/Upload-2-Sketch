@@ -4,7 +4,8 @@ import { Icon } from "semantic-ui-react";
 import axios from "axios";
 
 const Login = () => {
-  document.title = "Create Account | CineSense"
+  document.title = "Login | CineSense"
+    const [loading, setLoading] = useState(false)
     const [user,setUser] = useState({
     email:"",password:""
     })
@@ -29,76 +30,33 @@ const Login = () => {
     setError({email:"",password:""})
   }
 
-  const handleValidation = () => {
-    const emailRegex = /.*@.*\.com$/;
-
-    if(user.fullName.length === 0){
-        setError({...error,fullName:"Please enter a valid name"})
-        return true
-    }
-
-    if(user.fullName.length < 3){
-        setError({...error,fullName:"Please enter a valid name"})
-        return true
-    }
-
-    if(user.fullName.length > 35){
-        setError({...error,fullName:"Maximum character limit is 35"})
-        return true
-    }
-
-    if(!(emailRegex.test(user.email))){
-        setError({...error,email:"Please enter a valid email address"})
-        return true
-    }
-
-    if(user.password.length < 8){
-        setError({...error,password:"Password must be at least 8 characters"})
-        return true
-    }
-
-    if(user.password !== user.confirmPassword){
-        setError({...error,confirmPassword:"Password and Confirm Password must match"})
-        return true
-    }
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     clearError();
-    if(!handleValidation()){
-        console.log(user)
-
       try {
-        console.log("1")
-          const res = await axios.post(`https://cinesense-hgch.onrender.com/sign_up`, {
-          name: user.fullName,
+          const res = await axios.post(`https://cinesense-hgch.onrender.com/login`, {
           email: user.email,
           password: user.password,
         }
         );
 
-        console.log("2")
         const statusCode = res.data.statusCode
-        console.log(statusCode)
         console.log(res)
-        console.log(res.success)
-        console.log(res.status)
         if(statusCode === 200){
-          console.log("3")
-          setUser({ fullName: "", email: "", password: "", confirmPassword: "" });
+          setUser({ email: "", password: "" });
           console.log("done")
         }
         else if(statusCode === 404){
           console.log("Error Occured")
+          console.log(res)
         }
       } catch (err) {
-        console.log("4")
+        console.log(res)
         console.log(err.message);
       }
-
+      setLoading(false)
       clearForm();
-    }
   }
     return (
     <div className="min-h-screen flex flex-col justify-center items-center">
@@ -148,8 +106,8 @@ const Login = () => {
           </div>
           
           <div className="flex justify-center items-center mt-6">
-
-          <button type="submit" className="submitBtn bg-cardHeading text-navbarText text-lg rounded-lg px-12 py-2 mx-auto border-2 border-logoColor hover:bg-logoColor hover:text-white hover:scale-110 duration-200">Login</button>
+          {loading ? <p>Logging in...</p> : <></>}
+          <button type="submit" onClick={handleSubmit} className="submitBtn bg-cardHeading text-navbarText text-lg rounded-lg px-12 py-2 mx-auto border-2 border-logoColor hover:bg-logoColor hover:text-white hover:scale-110 duration-200">Login</button>
           </div>
           <div className="flex justify-center items-center mt-6">
 

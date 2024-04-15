@@ -70,7 +70,6 @@ const Signup = () => {
         console.log(user)
 
       try {
-        console.log("1")
           const res = await axios.post(`https://cinesense-hgch.onrender.com/sign_up`, {
           name: user.fullName,
           email: user.email,
@@ -78,20 +77,17 @@ const Signup = () => {
         }
         );
 
-        console.log("2")
         const statusCode = res.data.statusCode
 
         if(statusCode === 200){
-          console.log("3")
           setUser({ fullName: "", email: "", password: "", confirmPassword: "" });
-          console.log("done")
+          console.log(res.success)
         }
         else if(statusCode === 404){
           console.log("Error Occured")
         }
       } catch (err) {
-        console.log("4")
-        console.log(err.message);
+        console.log(err.error);
       }
 
       clearForm();
