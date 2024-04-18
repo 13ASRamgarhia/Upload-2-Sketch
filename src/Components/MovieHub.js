@@ -22,9 +22,7 @@ const MovieHub = () => {
 
   const handlePosterClick = async (movie) => {
     try{
-      setProgress(10)
-      await setMovieDetailName(movie)
-      navigate("/MovieDetail")
+console.click(movie.title_x)
     } catch (e) {
       console.log(e)
     }
