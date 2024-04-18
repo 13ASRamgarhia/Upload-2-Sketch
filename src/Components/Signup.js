@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
 import axios from "axios";
+import loginContext from '../Context/loginContext';
 
 const Signup = () => {
   document.title = "Create Account | CineSense"
+  const context = useContext(loginContext)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const { setProgress } = context
+
     const [user,setUser] = useState({
     fullName:"",email:"",password:"",confirmPassword:""
     })
@@ -65,6 +71,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setProgress(10)
     clearError();
     if(!handleValidation()){
         console.log(user)
@@ -76,23 +83,39 @@ const Signup = () => {
           password: user.password,
         }
         );
+        setProgress(25)
 
         const statusCode = res.data.statusCode
 
         if(statusCode === 200){
           setUser({ fullName: "", email: "", password: "", confirmPassword: "" });
-          console.log(res.success)
+          setProgress(100)          
         }
         else if(statusCode === 404){
           console.log("Error Occured")
+          setProgress(100)
         }
       } catch (err) {
         console.log(err.error);
+        setProgress(100)
       }
 
       clearForm();
     }
+    else{
+      setProgress(100)
+    }
   }
+
+  const handlePasswordShow = () => {
+    setShowPassword(!showPassword)
+  }
+
+  const handleConfirmPasswordShow = () => {
+    setShowConfirmPassword(!showConfirmPassword)
+  }
+
+
     return (
     <div className="min-h-screen flex flex-col justify-center items-center">
       <div className="w-full laptop:w-[50%]">
@@ -137,12 +160,12 @@ const Signup = () => {
           </div>
           <p className="text-cardBodyLight text-sm mb-3">{error.email}</p>
 
-          <div className="formGroup m-auto mt-3 py-1 text-lg space-x-2 border-b border-cardBody">
+          <div className="formGroup m-auto mt-3 py-1 text-lg space-x-2 border-b border-cardBody flex">
             <label htmlFor="password">
               <Icon name="lock" size="large" className="text-cardBody" />
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               autoComplete="off"
@@ -152,15 +175,18 @@ const Signup = () => {
               placeholder="Create password"
               className="formInput bg-transparent focus:outline-0 w-[80%]"
             />
+            <div className="">
+            <button type="button" className="" onClick={handlePasswordShow}><Icon name={showPassword ? "eye slash" : "eye"} size="large" /></button>
+            </div>
           </div>
           <p className="text-cardBodyLight text-sm mb-3">{error.password}</p>
 
-          <div className="formGroup m-auto mt-3 py-1 text-lg space-x-2 border-b border-cardBody">
+          <div className="formGroup m-auto mt-3 py-1 text-lg space-x-2 border-b border-cardBody flex">
             <label htmlFor="password">
               <Icon name="lock" size="large" className="text-cardBody" />
             </label>
             <input
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               name="confirmPassword"
               id="confirmPassword"
               autoComplete="off"
@@ -170,6 +196,9 @@ const Signup = () => {
               placeholder="Confirm password"
               className="formInput bg-transparent focus:outline-0 w-[80%]"
             />
+            <div className="">
+              <button type="button" className="" onClick={handleConfirmPasswordShow}><Icon name={showConfirmPassword ? "eye slash" : "eye"} size="large" /></button>
+            </div>
           </div>
           <p className="text-cardBodyLight text-sm mb-3">{error.confirmPassword}</p>
 

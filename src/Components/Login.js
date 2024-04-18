@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
 import axios from "axios";
 import loginContext from "../Context/loginContext";
@@ -7,10 +7,11 @@ import loginContext from "../Context/loginContext";
 const Login = () => {
   document.title = "Login | CineSense"
 
+  const navigate = useNavigate()
   const context = useContext(loginContext)
-  const { setLoggedIn } = context
+  const { setProgress, setLoggedIn, loggedInEmail, setLoggedInEmail } = context
+  const [showPassword, setShowPassword] = useState(false)
 
-    const [loading, setLoading] = useState(false)
     const [user,setUser] = useState({
     email:"",password:""
     })
@@ -37,31 +38,40 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
+    setProgress(10)
     clearError();
       try {
+          setProgress(25)
           const res = await axios.post(`https://cinesense-hgch.onrender.com/login`, {
           email: user.email,
           password: user.password,
         }
         );
-
+        setProgress(75)
         const statusCode = res.request.status
         console.log(res)
         if(statusCode === 200){
           setUser({ email: "", password: "" });
           setLoggedIn(true)
-          console.log("logged in")
+          setLoggedInEmail(user.email)
+          console.log(loggedInEmail)
+          setProgress(100)
+          navigate("/Prefrences")
         }
         else if(statusCode === 404){
           console.log("Error Occured")
-          console.log(res)
+          setProgress(100)
         }
       } catch (err) {
         console.log(err.message);
+        setProgress(100)
       }
-      setLoading(false)
+      setProgress(100)
       clearForm();
+  }
+
+  const handlePasswordShow = () => {
+    setShowPassword(!showPassword)
   }
 
     return (
@@ -90,12 +100,12 @@ const Login = () => {
           </div>
           <p className="text-cardBodyLight text-sm mb-3">{error.email}</p>
 
-          <div className="formGroup m-auto mt-3 py-1 text-lg space-x-2 border-b border-cardBody">
+          <div className="formGroup m-auto mt-3 py-1 text-lg space-x-2 border-b border-cardBody flex">
             <label htmlFor="password">
               <Icon name="lock" size="large" className="text-cardBody" />
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               autoComplete="off"
@@ -105,6 +115,9 @@ const Login = () => {
               placeholder="Password"
               className="formInput bg-transparent focus:outline-0 w-[80%]"
             />
+            <div className="">
+              <button type="button" className="" onClick={handlePasswordShow}><Icon name={showPassword ? "eye slash" : "eye"} size="large" /></button>
+            </div>
           </div>
           <p className="text-cardBodyLight text-sm mb-3">{error.password}</p>
 
@@ -112,7 +125,6 @@ const Login = () => {
           </div>
           
           <div className="flex justify-center items-center mt-6">
-          {loading ? <p>Logging in...</p> : <></>}
           <button type="submit" onClick={handleSubmit} className="submitBtn bg-cardHeading text-navbarText text-lg rounded-lg px-12 py-2 mx-auto border-2 border-logoColor hover:bg-logoColor hover:text-white hover:scale-110 duration-200">Login</button>
           </div>
           <div className="flex justify-center items-center mt-6">

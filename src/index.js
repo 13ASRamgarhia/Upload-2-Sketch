@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import LoginState from './Context/LoginState';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-      <App />
+      <LoginState>
+        <App />
+      </LoginState>
     </BrowserRouter>
 );
 

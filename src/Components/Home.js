@@ -2,7 +2,7 @@ import React from "react";
 import aboutIllustration from "../Assets/illustrations/aboutIllustartion.svg";
 import { Link } from "react-router-dom";
 
-import Appointment from "./Appointment";
+import Appointment from "./Magic";
 
 const Home = () => {
   document.title = "Home | CineSense"

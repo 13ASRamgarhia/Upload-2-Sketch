@@ -3,7 +3,7 @@ import aboutUS from "../Assets/illustrations/aboutUs.svg";
 import ourTeam from "../Assets/illustrations/ourTeam.svg";
 
 const Member = (props) => {
-  const { first_name, last_name, sid, email, avatar } = props;
+  const { first_name, last_name, sid, email } = props;
 
   return (
     <div>
@@ -165,7 +165,7 @@ const About = () => {
           <div className="h-1 w-32 bg-logoColor"></div>
           <div className="h-1 w-24 bg-logoColor"></div>
         </div>
-        <div className="py-10 px-4 flex flex-col tablet:flex-row space-x-0 tablet:space-x-10 space-y-4 tablet:space-y-0">
+        <div className="py-10 px-4 flex tablet:flex-row space-x-0 tablet:space-x-10 space-y-4 tablet:space-y-0">
           <div className="flex justify-center w-full px-4 laptop:px-48">
           <div className='grid grid-cols-autofit gap-10 w-full items-center'>
             {

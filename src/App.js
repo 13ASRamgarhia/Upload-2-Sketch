@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
@@ -6,24 +6,19 @@ import Home from './Components/Home';
 import ErrorPage from './Components/404';
 import About from './Components/About';
 import LoadingBar from 'react-top-loading-bar';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useContext } from 'react';
 import Signup from './Components/Signup';
 import Login from './Components/Login';
-import LoginState from './Context/LoginState';
+import loginContext from './Context/loginContext';
+import MovieHub from './Components/MovieHub';
+import GPreferences from './Components/GPreferences';
 
 function App() {
-  const [progress, setProgress] = useState(0)
-  const location = useLocation()
-
-  useEffect(() => {
-    setProgress(10)
-    setProgress(100)
-  }, [location])
+  const context = useContext(loginContext)
+  const { progress, setProgress } = context
 
   return (
     <div className="bg-bgColor min-h-screen min-w-[100%]">
-      <LoginState>
       <Navbar />
       <LoadingBar
         height="3px"
@@ -36,11 +31,12 @@ function App() {
         <Route exact path="/About" element={ <About /> } />
         <Route exact path="/Signup" element={ <Signup /> } />
         <Route exact path="/Login" element={ <Login /> } />
+        <Route exact path="/MovieHub" element={ <MovieHub /> } />
+        <Route exact path="/Prefrences" element={ <GPreferences />} />
         <Route exact path="*" element={ <ErrorPage /> } />
       </Routes>
 
       <Footer />
-      </LoginState>
     </div>
   );
 }

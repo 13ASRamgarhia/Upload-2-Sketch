@@ -6,7 +6,7 @@ import loginContext from "../Context/loginContext";
 
 const Navbar = () => {
   const location = useLocation()
-  const { isLoggedIn, setLoggedIn } = useContext(loginContext)
+  const { isLoggedIn, setLoggedIn, loggedInEmail, setLoggedInEmail, setProgress } = useContext(loginContext)
   
   const toggleHamburger = () => {
     document.getElementById("slideoverBG").classList.toggle("invisible");
@@ -15,7 +15,11 @@ const Navbar = () => {
   }
 
   const handleLogout = () => {
+    setProgress(10)
     setLoggedIn(false)
+    setLoggedInEmail("")
+    console.log(`${loggedInEmail} logged out`)
+    setProgress(100)
   }
 
   return (
