@@ -52,9 +52,7 @@ const Home = () => {
             </div>
             <div className="desc text-white text-justify px-4 laptop:px-48 text-2xl w-full laptop:w-[70%] font-inter">
               <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit
-              quidem harum facilis odio error voluptate Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit
-              quidem harum facilis odio error voluptate
+              Your ultimate destination for discovering your next favorite film! Dive into a world of cinematic wonders with our curated collection of movie recommendations tailored just for you. Whether you're a die-hard cinephile or a casual viewer, our intuitive interface makes it a breeze to explore a diverse range of genres, from heart-pounding thrillers to heartwarming dramas and everything in between.
               </p>
             </div>
 
@@ -79,19 +77,8 @@ const Home = () => {
         </div>
         <div className="py-10 flex flex-col tablet:flex-row space-x-0 tablet:space-x-10 space-y-4 tablet:space-y-0">
           <div className="w-full tablet:w-[70%]">
-            <p className="font-inter text-xl text-subHeadingColor mt-6">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit
-              quidem harum facilis odio error voluptate, libero rem officiis
-              quod tempore, molestias sint voluptatum consequuntur. Hic odit
-              omnis fuga exercitationem atque.
-              <br />
-              <br /> Reprehenderit voluptatum hic sed quos, sint quo assumenda
-              sunt voluptatem, atque, doloremque quisquam porro veniam facere
-              enim a repellendus aut non quae inventore vel ex dolorem. Atque
-              inventore iusto error? Quidem sapiente rerum labore sint ducimus,
-              optio, veritatis amet id ad debitis corrupti perferendis pariatur
-              beatae placeat facere in error repellendus ipsam tempora
-              consectetur a magni est non! Eos, nihil!
+            <p className="font-inter text-xl text-subHeadingColor mt-6 text-justify">
+            We're passionate about the transformative power of film. We're a team of dedicated movie enthusiasts, united by our love for storytelling and our mission to connect audiences with the perfect movies for every mood and moment. With a deep appreciation for the art of cinema, we've curated a platform that goes beyond mere recommendations – we're here to inspire, educate, and elevate your movie-watching experience. Our commitment to excellence drives us to continuously refine our algorithms, update our database, and expand our horizons, ensuring that you always have access to the best that cinema has to offer. Whether you're seeking hidden gems, timeless classics, or the latest blockbusters, trust us to be your trusted guides in the vast world of movies. Join us on this cinematic journey, and let's explore the magic of storytelling together.
             </p>
             <div className="mt-6 laptop:mt-16 flex">
               <Link

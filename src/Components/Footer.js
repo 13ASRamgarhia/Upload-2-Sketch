@@ -21,7 +21,8 @@ const Footer = () => {
       <div className="flex flex-col laptop:flex-row justify-between space-y-10 laptop:space-y-0">
         <div className="space-y-1">
           <p className="text-2xl text-white font-bold">CineSense</p>
-          <p className="text-lg text-[#aaa6c3]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur odio modi nihil obcaecati animi, </p>
+          <p className="text-lg text-[#aaa6c3]">              A SINGLE PLATFORM FOR FINDING BEST FAVORITE MOVIES
+</p>
           <p className="text-base text-white pt-10">FOLLOW US ON</p>
           <div className="flex py-2 space-x-2">
             <a href="https://facebook.com" rel="noopener noreferrer" target='_blank'><Icon name="facebook" size='large' className='text-white'/></a>

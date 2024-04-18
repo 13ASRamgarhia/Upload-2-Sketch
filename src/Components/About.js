@@ -74,14 +74,13 @@ const About = () => {
             <div className="welcome text-white px-4 laptop:px-48 text-6xl font-bold font-inter">
               <p>About us</p>
             </div>
-            <div className="desc space-y-6 text-white px-4 laptop:px-48 text-2xl w-full laptop:w-[70%] font-inter">
+            <div className="desc text-justify space-y-6 text-white px-4 laptop:px-48 text-2xl w-full laptop:w-[70%] font-inter">
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa
-                a expedita hic ex voluptatum nam possimus temporibus
+              Movies have a unique ability to transport us to new worlds, evoke powerful emotions, and spark meaningful conversations. We're on a mission to harness the incredible potential of cinema to enrich lives and inspire imaginations
               </p>
 
               <p className="uppercase">
-                Lorem ipsum dolor, sit amet consectetur
+              A SINGLE PLATFORM FOR FINDING BEST FAVORITE MOVIES
               </p>
             </div>
           </div>
