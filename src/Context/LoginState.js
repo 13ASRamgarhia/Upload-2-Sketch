@@ -10,6 +10,8 @@ const LoginState = (props) => {
   const [GenrePreference, setGenrePreference] = useState([]);
   const [ActorPreference, setActorPreference] = useState([]);
 
+  const [movieHub, setMovieHub] = useState([])
+
   const [movieDetail, setMovieDetail] = useState({})
 
   const [loggedInEmail, setLoggedInEmail] = useState("");
@@ -73,7 +75,9 @@ const LoginState = (props) => {
         loggedInEmail,
         setLoggedInEmail,
         movieDetail,
-        setMovieDetail
+        setMovieDetail,
+        movieHub,
+        setMovieHub
       }}
     >
       {props.children}  

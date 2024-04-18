@@ -152,6 +152,7 @@ const GPreferences = () => {
     GenrePreference,
     ActorPreference,
     loggedInEmail,
+    setMovieHub
   } = context;
 
   const tenItemCard = [
@@ -207,7 +208,7 @@ const GPreferences = () => {
         }
       );
       setProgress(100);
-      console.log(res.data)
+      setMovieHub(res.data)
     } catch (e) {
       setProgress(100);
       console.log(e);

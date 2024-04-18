@@ -9,83 +9,9 @@ const MovieHub = () => {
 
   const navigate = useNavigate()
 
-  const { setMovieDetail, setProgress } = useContext(loginContext)
+  const { setMovieDetail, setProgress, movieHub } = useContext(loginContext)
 
   const [searchTerm, setSearchTerm] = useState("");
-
-  const movies = {
-    "genres": [
-      {
-        "title_x": "The Dark Knight",
-        "movie_id": 155,
-        "poster": "https://image.tmdb.org/t/p/w500//qJ2tW6WMUDux911r6m7haRef0WH.jpg"
-      },
-      {
-        "title_x": "Inception",
-        "movie_id": 27205,
-        "poster": "https://image.tmdb.org/t/p/w500//oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg"
-      },
-      {
-        "title_x": "The Lord of the Rings: The Return of the King",
-        "movie_id": 122,
-        "poster": "https://image.tmdb.org/t/p/w500//rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg"
-      },
-      {
-        "title_x": "The Empire Strikes Back",
-        "movie_id": 1891,
-        "poster": "https://image.tmdb.org/t/p/w500//nNAeTmF4CtdSgMDplXTDPOpYzsX.jpg"
-      },
-      {
-        "title_x": "The Lord of the Rings: The Fellowship of the Ring",
-        "movie_id": 120,
-        "poster": "https://image.tmdb.org/t/p/w500//6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg"
-      }
-    ],
-    "cast": [
-      {
-        "title_x": "Avatar",
-        "movie_id": 19995,
-        "poster": "https://image.tmdb.org/t/p/w500//kyeqWdyUXW608qlYkRqosgbbJyK.jpg"
-      },
-      {
-        "title_x": "Terminator Salvation",
-        "movie_id": 534,
-        "poster": "https://image.tmdb.org/t/p/w500//gw6JhlekZgtKUFlDTezq3j5JEPK.jpg"
-      },
-      {
-        "title_x": "Clash of the Titans",
-        "movie_id": 18823,
-        "poster": "https://image.tmdb.org/t/p/w500//6iHYLipwEyZUPNO8MM3l1yHDaFE.jpg"
-      }
-    ],
-    "crew": [
-      {
-        "title_x": "Titanic",
-        "movie_id": 597,
-        "poster": "https://image.tmdb.org/t/p/w500//9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg"
-      },
-      {
-        "title_x": "Terminator 2: Judgment Day",
-        "movie_id": 280,
-        "poster": "https://image.tmdb.org/t/p/w500//5M0j0B18abtBI5gi2RhfjjurTqb.jpg"
-      },
-      {
-        "title_x": "Aliens",
-        "movie_id": 679,
-        "poster": "https://image.tmdb.org/t/p/w500//r1x5JGpyqZU8PYhbs4UcrO1Xb6x.jpg"
-      },
-      {
-        "title_x": "Avatar",
-        "movie_id": 19995,
-        "poster": "https://image.tmdb.org/t/p/w500//kyeqWdyUXW608qlYkRqosgbbJyK.jpg"
-      },
-      {
-        "title_x": "The Terminator",
-        "movie_id": 218,
-        "poster": "https://image.tmdb.org/t/p/w500//qvktm0BHcnmDpul4Hz01GIazWPr.jpg"
-      }
-    ]
-  }
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -184,7 +110,7 @@ const MovieHub = () => {
                     Popular Movies by Director
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-                {movies.crew.map(movie => (
+                {movieHub.crew.map(movie => (
                     <img
                     key={movie.movie_id}
                     src={movie.poster}
@@ -205,7 +131,7 @@ const MovieHub = () => {
                     Popular Movies by Actor
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-                {movies.cast.map(movie => (
+                {movieHub.cast.map(movie => (
                     <img
                     key={movie.id}
                     src={movie.poster}
@@ -226,7 +152,7 @@ const MovieHub = () => {
                     Popular Movies by Genre
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-                {movies.genres.map(movie => (
+                {movieHub.genres.map(movie => (
                     <img
                     key={movie.id}
                     src={movie.poster}
@@ -247,7 +173,7 @@ const MovieHub = () => {
                     Other Popular Movies
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-                {movies.genres.map(movie => (
+                {movieHub.genres.map(movie => (
                     <img
                     key={movie.id}
                     src={movie.poster}
