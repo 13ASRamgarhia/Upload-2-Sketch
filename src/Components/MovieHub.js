@@ -1,16 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import MovieSearchData from "../Assets/MovieSearch.json";
 import loginContext from "../Context/loginContext";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 const MovieHub = () => {
   document.title = "Movie Hub | CineSense";
 
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
 
-  const { setProgress, movieHub, setMovieHub, setMovieDetailName } = useContext(loginContext)
+  const [clickable, setClickable] = useState(false);
+
+  const { movieHub, setMovieHub } = useContext(loginContext)
+  //  const { setProgress, movieHub, setMovieHub, setMovieDetailName } = useContext(loginContext)
 
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setClickable(true);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -114,7 +125,7 @@ console.click(movie.title_x)
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
                 {movieHub.crew.map(movie => (
-                    <button type="button" onClick={handlePosterClick(movie)} className="w-auto h-48 mr-4 cursor-pointer"><img
+                    <button type="button" onClick={handlePosterClick(movie)} disabled={!clickable} className="w-auto h-48 mr-4 cursor-pointer"><img
                     key={movie.movie_id}
                     src={movie.poster}
                     alt={movie.title_x}
