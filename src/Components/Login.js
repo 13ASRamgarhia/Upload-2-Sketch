@@ -53,9 +53,9 @@ const Login = () => {
         if(statusCode === 200){
           setUser({ email: "", password: "" });
           setLoggedIn(true)
-          setLoggedInEmail(user.email)
-          console.log(loggedInEmail)
           setProgress(100)
+          setLoggedInEmail(user.email)
+          console.log(`${loggedInEmail} logged in`)
           navigate("/Prefrences")
         }
         else if(statusCode === 404){
