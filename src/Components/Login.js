@@ -9,7 +9,7 @@ const Login = () => {
 
   const navigate = useNavigate()
   const context = useContext(loginContext)
-  const { setProgress, setLoggedIn, loggedInEmail, setLoggedInEmail } = context
+  const { setProgress, setLoggedIn, setLoggedInEmail } = context
   const [showPassword, setShowPassword] = useState(false)
 
     const [user,setUser] = useState({
