@@ -145,7 +145,7 @@ const MovieHub = () => {
                     src={movie.poster}
                     alt={movie.title}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    onClick={() => console.log(`Clicked on ${movie.title_x}`)}
+                    onClick={handlePosterClick(movie)}
                     />
                 ))}
                 </div>
@@ -166,7 +166,7 @@ const MovieHub = () => {
                     src={movie.poster}
                     alt={movie.title}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    onClick={() => console.log(`Clicked on ${movie.title_x}`)}
+                    onClick={handlePosterClick(movie)}
                     />
                 ))}
                 </div>
@@ -187,7 +187,7 @@ const MovieHub = () => {
                     src={movie.poster}
                     alt={movie.title}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    onClick={() => console.log(`Clicked on ${movie.title_x}`)}
+                    onClick={handlePosterClick(movie)}
                     />
                 ))}
                 </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import loginContext from "../Context/loginContext";
 
 import Rating from "@mui/material/Rating";
@@ -7,7 +7,7 @@ import { Chip } from "@mui/material";
 const MovieDetail = () => {
   document.title = "Movie Hub | CineSense";
 
-  const { movieDetail } = useContext(loginContext);
+  const { movieDetail, setMovieDetail, } = useContext(loginContext);
 
   const genreList = movieDetail.genres.split(",");
   const castList = movieDetail.cast.split(",");
@@ -34,6 +34,14 @@ const MovieDetail = () => {
     }
     return modifiedItem;
   });
+
+  useEffect(() => {
+    const rendering = async () => {
+        await setMovieDetail(movieDetail)
+    }
+    rendering();
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="py-14 min-h-screen ">
