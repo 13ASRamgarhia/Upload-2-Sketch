@@ -145,7 +145,7 @@ console.click(movie.title_x)
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
                 {movieHub.cast.map(movie => (
-                    <button type="button" onClick={handlePosterClick(movie)} className="w-auto h-48 mr-4 cursor-pointer"><img
+                    <button type="button" onClick={handlePosterClick(movie)} disabled={!clickable}  className="w-auto h-48 mr-4 cursor-pointer"><img
                     key={movie.movie_id}
                     src={movie.poster}
                     alt={movie.title_x}
@@ -165,7 +165,7 @@ console.click(movie.title_x)
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
                 {movieHub.genres.map(movie => (
-                    <button type="button" onClick={handlePosterClick(movie)} className="w-auto h-48 mr-4 cursor-pointer"><img
+                    <button type="button" onClick={handlePosterClick(movie)} disabled={!clickable}  className="w-auto h-48 mr-4 cursor-pointer"><img
                     key={movie.movie_id}
                     src={movie.poster}
                     alt={movie.title_x}
@@ -185,7 +185,7 @@ console.click(movie.title_x)
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
                 {movieHub.crew.map(movie => (
-                    <button type="button" onClick={handlePosterClick(movie)} className="w-auto h-48 mr-4 cursor-pointer"><img
+                    <button type="button" onClick={handlePosterClick(movie)} disabled={!clickable}  className="w-auto h-48 mr-4 cursor-pointer"><img
                     key={movie.movie_id}
                     src={movie.poster}
                     alt={movie.title_x}
