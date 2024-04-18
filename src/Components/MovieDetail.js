@@ -3,12 +3,11 @@ import loginContext from "../Context/loginContext";
 
 import Rating from "@mui/material/Rating";
 import { Chip } from "@mui/material";
-import axios from "axios";
 
 const MovieDetail = () => {
   document.title = "Movie Hub | CineSense";
 
-  const { movieDetail, setMovieDetail, movieDetailName } = useContext(loginContext);
+  const { movieDetail, setMovieDetail } = useContext(loginContext);
 
   const genreList = movieDetail.genres.split(",");
   const castList = movieDetail.cast.split(",");
@@ -38,13 +37,7 @@ const MovieDetail = () => {
 
   useEffect(() => {
     const rendering = async () => {
-        try{
-            console.log(movieDetailName)
-            const res = await axios.get(`https://cinesense-hgch.onrender.com/movie_detail/${movieDetailName}`)
-            await setMovieDetail(res)
-        }catch (e){
-            console.log(e)
-        }
+        await setMovieDetail(movieDetail)
     }
     rendering();
     // eslint-disable-next-line

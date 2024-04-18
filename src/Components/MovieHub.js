@@ -11,7 +11,7 @@ const MovieHub = () => {
 
   const [clickable, setClickable] = useState(false);
 
-  const { movieHub, setMovieHub, setProgress, setMovieDetailName } = useContext(loginContext)
+  const { movieHub, setMovieHub, setProgress } = useContext(loginContext)
   //  const { setProgress, movieHub, setMovieHub, setMovieDetailName } = useContext(loginContext)
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,8 +45,8 @@ const MovieHub = () => {
   const handlePosterClick = async (movie) => {
     setProgress(25)
     try{
-      await setMovieDetailName(movie.movie_id)
-      console.log(movie.movie_id)
+      const res = await axios.get(`https://cinesense-hgch.onrender.com/movie_detail/${movie.movie_id}`)
+      console.log(res)
       setProgress(100)
       navigate("/MovieDetail")
     } catch (e) {
