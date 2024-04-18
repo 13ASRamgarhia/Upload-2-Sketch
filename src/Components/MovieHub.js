@@ -19,7 +19,7 @@ const MovieHub = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setClickable(true);
-    }, 4000);
+    }, 10000);
 
     return () => clearTimeout(timer);
   }, []);
