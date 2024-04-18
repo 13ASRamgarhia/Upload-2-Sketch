@@ -65,7 +65,7 @@ const MovieHub = () => {
                       setSearchTerm("");
                       try {
                         const res = await axios.get(
-                          `https://cinesense-hgch.onrender.com/recommend/${searchTerm}/25`
+                          `https://cinesense-hgch.onrender.com/recommend/${searchTerm}/10`
                         );
                         setRecommendedMovies(res.data);
                         setProgress(100);
