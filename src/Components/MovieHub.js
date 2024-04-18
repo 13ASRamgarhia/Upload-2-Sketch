@@ -2,12 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import MovieSearchData from "../Assets/MovieSearch.json";
 import loginContext from "../Context/loginContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const MovieHub = () => {
   document.title = "Movie Hub | CineSense";
-
-  const navigate = useNavigate();
 
   const [clickable, setClickable] = useState(false);
 
@@ -37,22 +34,6 @@ const MovieHub = () => {
       );
       console.log(res);
       setProgress(100);
-      navigate("/MovieDetail");
-    } catch (e) {
-      setProgress(100);
-      console.log(e);
-    }
-  };
-
-  const handlePosterClick = async (movie) => {
-    setProgress(25);
-    try {
-      const res = await axios.get(
-        `https://cinesense-hgch.onrender.com/movie_detail/${movie.movie_id}`
-      );
-      console.log(res);
-      setProgress(100);
-      navigate("/MovieDetail");
     } catch (e) {
       setProgress(100);
       console.log(e);
@@ -145,7 +126,6 @@ const MovieHub = () => {
                 <div className="flex">
                   <button
                     type="button"
-                    onClick={handlePosterClick(movie)}
                     disabled={!clickable}
                     className="w-auto h-48 mr-4 cursor-pointer"
                   >
@@ -173,7 +153,6 @@ const MovieHub = () => {
               {movieHub.cast.map((movie) => (
                 <button
                   type="button"
-                  onClick={handlePosterClick(movie)}
                   disabled={!clickable}
                   className="w-auto h-48 mr-4 cursor-pointer"
                 >
@@ -200,7 +179,6 @@ const MovieHub = () => {
               {movieHub.genres.map((movie) => (
                 <button
                   type="button"
-                  onClick={handlePosterClick(movie)}
                   disabled={!clickable}
                   className="w-auto h-48 mr-4 cursor-pointer"
                 >
@@ -227,7 +205,6 @@ const MovieHub = () => {
               {movieHub.crew.map((movie) => (
                 <button
                   type="button"
-                  onClick={handlePosterClick(movie)}
                   disabled={!clickable}
                   className="w-auto h-48 mr-4 cursor-pointer"
                 >
