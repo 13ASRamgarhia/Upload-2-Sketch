@@ -7,11 +7,11 @@ import { useNavigate } from "react-router-dom";
 const MovieHub = () => {
   document.title = "Movie Hub | CineSense";
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [clickable, setClickable] = useState(false);
 
-  const { movieHub, setMovieHub, setProgress } = useContext(loginContext)
+  const { movieHub, setMovieHub, setProgress } = useContext(loginContext);
   //  const { setProgress, movieHub, setMovieHub, setMovieDetailName } = useContext(loginContext)
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,39 +29,43 @@ const MovieHub = () => {
   };
 
   const handleGoClick = async () => {
-    setProgress(10)
-     setSearchTerm("");
-     try{
-      const res = await axios.get(`https://cinesense-hgch.onrender.com/recommend/${searchTerm}/25`)
-      console.log(res)
-      setProgress(100)
-      navigate("/MovieDetail")
-     } catch(e){
-      setProgress(100)
-      console.log(e)
-     }
+    setProgress(10);
+    setSearchTerm("");
+    try {
+      const res = await axios.get(
+        `https://cinesense-hgch.onrender.com/recommend/${searchTerm}/25`
+      );
+      console.log(res);
+      setProgress(100);
+      navigate("/MovieDetail");
+    } catch (e) {
+      setProgress(100);
+      console.log(e);
+    }
   };
 
   const handlePosterClick = async (movie) => {
-    setProgress(25)
-    try{
-      const res = await axios.get(`https://cinesense-hgch.onrender.com/movie_detail/${movie.movie_id}`)
-      console.log(res)
-      setProgress(100)
-      navigate("/MovieDetail")
+    setProgress(25);
+    try {
+      const res = await axios.get(
+        `https://cinesense-hgch.onrender.com/movie_detail/${movie.movie_id}`
+      );
+      console.log(res);
+      setProgress(100);
+      navigate("/MovieDetail");
     } catch (e) {
-      setProgress(100)
-      console.log(e)
+      setProgress(100);
+      console.log(e);
     }
-  }
+  };
 
   useEffect(() => {
     const rendering = async () => {
-       await setMovieHub(movieHub)
-    }
+      await setMovieHub(movieHub);
+    };
     rendering();
     // eslint-disable-next-line
-  }, [])
+  }, []);
 
   return (
     <div className="py-14 min-h-screen ">
@@ -72,9 +76,7 @@ const MovieHub = () => {
               <p>Movie Hub</p>
             </div>
             <div className="desc space-y-6 text-white px-4 laptop:px-48 text-2xl w-full laptop:w-[70%] font-inter">
-              <p>
-                
-              </p>
+              <p></p>
             </div>
           </div>
           <div className="laptop:w-[50%] relative justify-center pt-20 flex">
@@ -134,81 +136,111 @@ const MovieHub = () => {
 
       <div className="pt-10">
         <div className="px-10 flex flex-col">
-            <div className="relative flex flex-col">
-                <div className="text-3xl font-bold spacing tracking-wide">
-                    Popular Movies by Director
-                </div>
-                <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-                {movieHub.crew.map(movie => (
-                    <button type="button" onClick={handlePosterClick(movie)} disabled={!clickable} className="w-auto h-48 mr-4 cursor-pointer"><img
-                    key={movie.movie_id}
-                    src={movie.poster}
-                    alt={movie.title_x}
-                    className="w-auto h-48 mr-4 cursor-pointer"
-                    /></button>
-                ))}
-                </div>
+          <div className="relative flex flex-col">
+            <div className="text-3xl font-bold spacing tracking-wide">
+              Popular Movies by Director
             </div>
+            <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
+              {movieHub.crew.map((movie) => (
+                <div className="flex">
+                  <button
+                    type="button"
+                    onClick={handlePosterClick(movie)}
+                    disabled={!clickable}
+                    className="w-auto h-48 mr-4 cursor-pointer"
+                  >
+                    <img
+                      key={movie.movie_id}
+                      src={movie.poster}
+                      alt={movie.title_x}
+                      className="w-auto h-48 mr-4 cursor-pointer"
+                    />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="pt-10">
         <div className="px-10 flex flex-col">
-            <div className="relative flex flex-col">
-                <div className="text-3xl font-bold spacing tracking-wide">
-                    Popular Movies by Actor/Actress
-                </div>
-                <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-                {movieHub.cast.map(movie => (
-                    <button type="button" onClick={handlePosterClick(movie)} disabled={!clickable}  className="w-auto h-48 mr-4 cursor-pointer"><img
+          <div className="relative flex flex-col">
+            <div className="text-3xl font-bold spacing tracking-wide">
+              Popular Movies by Actor/Actress
+            </div>
+            <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
+              {movieHub.cast.map((movie) => (
+                <button
+                  type="button"
+                  onClick={handlePosterClick(movie)}
+                  disabled={!clickable}
+                  className="w-auto h-48 mr-4 cursor-pointer"
+                >
+                  <img
                     key={movie.movie_id}
                     src={movie.poster}
                     alt={movie.title_x}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    /></button>
-                ))}
-                </div>
+                  />
+                </button>
+              ))}
             </div>
+          </div>
         </div>
       </div>
 
       <div className="pt-10">
         <div className="px-10 flex flex-col">
-            <div className="relative flex flex-col">
-                <div className="text-3xl font-bold spacing tracking-wide">
-                    Popular Movies by Genre
-                </div>
-                <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-                {movieHub.genres.map(movie => (
-                    <button type="button" onClick={handlePosterClick(movie)} disabled={!clickable}  className="w-auto h-48 mr-4 cursor-pointer"><img
+          <div className="relative flex flex-col">
+            <div className="text-3xl font-bold spacing tracking-wide">
+              Popular Movies by Genre
+            </div>
+            <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
+              {movieHub.genres.map((movie) => (
+                <button
+                  type="button"
+                  onClick={handlePosterClick(movie)}
+                  disabled={!clickable}
+                  className="w-auto h-48 mr-4 cursor-pointer"
+                >
+                  <img
                     key={movie.movie_id}
                     src={movie.poster}
                     alt={movie.title_x}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    /></button>
-                ))}
-                </div>
+                  />
+                </button>
+              ))}
             </div>
+          </div>
         </div>
       </div>
-      
+
       <div className="pt-10">
         <div className="px-10 flex flex-col">
-            <div className="relative flex flex-col">
-                <div className="text-3xl font-bold spacing tracking-wide">
-                    Trending Movies
-                </div>
-                <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-                {movieHub.crew.map(movie => (
-                    <button type="button" onClick={handlePosterClick(movie)} disabled={!clickable}  className="w-auto h-48 mr-4 cursor-pointer"><img
+          <div className="relative flex flex-col">
+            <div className="text-3xl font-bold spacing tracking-wide">
+              Trending Movies
+            </div>
+            <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
+              {movieHub.crew.map((movie) => (
+                <button
+                  type="button"
+                  onClick={handlePosterClick(movie)}
+                  disabled={!clickable}
+                  className="w-auto h-48 mr-4 cursor-pointer"
+                >
+                  <img
                     key={movie.movie_id}
                     src={movie.poster}
                     alt={movie.title_x}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    /></button>
-                ))}
-                </div>
+                  />
+                </button>
+              ))}
             </div>
+          </div>
         </div>
       </div>
     </div>
