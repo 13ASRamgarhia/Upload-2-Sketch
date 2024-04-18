@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import 'animate.css';
+import "animate.css";
 import gamification from "../Assets/gamification.json";
 
 import { fadeIn, textVariant } from "./utils/motion";
@@ -10,54 +10,60 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const PrefrencesCard = ({ index, title, list, jsonList }) => {
-    const context = useContext(loginContext);
-    const {
-        gamificationList,
-        setGamificationList,
-        setDirectorPreference,
-        setGenrePreference,
-        setActorPreference
-    } = context;
+  const context = useContext(loginContext);
+  const {
+    gamificationList,
+    setGamificationList,
+    setDirectorPreference,
+    setGenrePreference,
+    setActorPreference,
+  } = context;
 
-    const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
 
-    const handleClick = (item) => {
-        setSelectedItems(prevItems =>
-          prevItems.includes(item)
-            ? prevItems.filter(selectedItem => selectedItem !== item)
-            : [...prevItems, item]
-        );
+  const handleClick = (item) => {
+    setSelectedItems((prevItems) =>
+      prevItems.includes(item)
+        ? prevItems.filter((selectedItem) => selectedItem !== item)
+        : [...prevItems, item]
+    );
 
-        if(list === gamificationList.DirectorList){
-            setDirectorPreference(prevSelectedItems => {
-                if (prevSelectedItems.includes(item)) {
-                  return prevSelectedItems.filter(DirectorPreference => DirectorPreference !== item);
-                } else {
-                  return [...prevSelectedItems, item];
-                }
-              });
-        }else if(list === gamificationList.GenreList){
-            setGenrePreference(prevSelectedItems => {
-                if (prevSelectedItems.includes(item)) {
-                  return prevSelectedItems.filter(GenrePreference => GenrePreference !== item);
-                } else {
-                  return [...prevSelectedItems, item];
-                }
-              });
-        }else if(list === gamificationList.ActorList){
-            setActorPreference(prevSelectedItems => {
-                if (prevSelectedItems.includes(item)) {
-                  return prevSelectedItems.filter(ActorPreference => ActorPreference !== item);
-                } else {
-                  return [...prevSelectedItems, item];
-                }
-              });
+    if (list === gamificationList.DirectorList) {
+      setDirectorPreference((prevSelectedItems) => {
+        if (prevSelectedItems.includes(item)) {
+          return prevSelectedItems.filter(
+            (DirectorPreference) => DirectorPreference !== item
+          );
+        } else {
+          return [...prevSelectedItems, item];
         }
-      };
+      });
+    } else if (list === gamificationList.GenreList) {
+      setGenrePreference((prevSelectedItems) => {
+        if (prevSelectedItems.includes(item)) {
+          return prevSelectedItems.filter(
+            (GenrePreference) => GenrePreference !== item
+          );
+        } else {
+          return [...prevSelectedItems, item];
+        }
+      });
+    } else if (list === gamificationList.ActorList) {
+      setActorPreference((prevSelectedItems) => {
+        if (prevSelectedItems.includes(item)) {
+          return prevSelectedItems.filter(
+            (ActorPreference) => ActorPreference !== item
+          );
+        } else {
+          return [...prevSelectedItems, item];
+        }
+      });
+    }
+  };
 
-    const isSelected = (item) => {
-        return selectedItems.includes(item);
-      };
+  const isSelected = (item) => {
+    return selectedItems.includes(item);
+  };
 
   return (
     <div className="xs:w-[250px] laptop:w-96">
@@ -74,7 +80,13 @@ const PrefrencesCard = ({ index, title, list, jsonList }) => {
             <div className="space-y-2 overflow-hidden w-full items-center">
               {list.map((item, index) => {
                 return (
-                  <div key={index} className={`text-lg border border-gray-200 w-full px-4 py-2 rounded-lg cursor-pointer hover:border-logoColor ${isSelected(item) ? 'bg-logoColor' : 'bg-white'}`} onClick={() => handleClick(item)}>
+                  <div
+                    key={index}
+                    className={`text-lg border border-gray-200 w-full px-4 py-2 rounded-lg cursor-pointer hover:border-logoColor ${
+                      isSelected(item) ? "bg-logoColor" : "bg-white"
+                    }`}
+                    onClick={() => handleClick(item)}
+                  >
                     {item}
                   </div>
                 );
@@ -82,28 +94,47 @@ const PrefrencesCard = ({ index, title, list, jsonList }) => {
             </div>
           </div>
           <div className="flex justify-end w-full px-5 cursor-pointer">
-            <button type="button" onClick={() => {
-                const shuffledList = gamification[jsonList].sort(() => 0.5 - Math.random());
+            <button
+              type="button"
+              onClick={() => {
+                const shuffledList = gamification[jsonList].sort(
+                  () => 0.5 - Math.random()
+                );
                 const selectedItems = shuffledList.slice(0, 10);
 
-                if(list === gamificationList.DirectorList){
-                    setGamificationList(prevState => ({
-                        ...prevState,
-                        DirectorList: selectedItems
-                      }));
-                }else if(list === gamificationList.GenreList){
-                    setGamificationList(prevState => ({
-                        ...prevState,
-                        GenreList: selectedItems
-                      }));
-                }else if(list === gamificationList.ActorList){
-                    setGamificationList(prevState => ({
-                        ...prevState,
-                        ActorList: selectedItems
-                      }));
+                const modifiedSelectedItems = selectedItems.map(item => {
+                    let modifiedItem = '';
+                    for (let i = 0; i < item.length; i++) {
+                      // Check if the current character is a capital letter
+                      if (item[i] === item[i].toUpperCase()) {
+                        // Add a space before the capital letter
+                        modifiedItem += ' ';
+                      }
+                      // Add the current character to the modified item
+                      modifiedItem += item[i];
+                    }
+                    return modifiedItem;
+                  });
+
+                if (list === gamificationList.DirectorList) {
+                  setGamificationList((prevState) => ({
+                    ...prevState,
+                    DirectorList: modifiedSelectedItems,
+                  }));
+                } else if (list === gamificationList.GenreList) {
+                  setGamificationList((prevState) => ({
+                    ...prevState,
+                    GenreList: modifiedSelectedItems,
+                  }));
+                } else if (list === gamificationList.ActorList) {
+                  setGamificationList((prevState) => ({
+                    ...prevState,
+                    ActorList: modifiedSelectedItems,
+                  }));
                 }
-                
-            }} className="border border-gray-200 px-4 py-2 rounded-lg hover:border-logoColor">
+              }}
+              className="border border-gray-200 px-4 py-2 rounded-lg hover:border-logoColor"
+            >
               more ...
             </button>
           </div>
@@ -114,70 +145,70 @@ const PrefrencesCard = ({ index, title, list, jsonList }) => {
 };
 
 const GPreferences = () => {
-  const [entry, setentry] = useState(false)
+  const [entry, setentry] = useState(false);
 
   const context = useContext(loginContext);
   const {
     setProgress,
     gamificationList,
     DirectorPreference,
-        GenrePreference,
-        ActorPreference,
-        loggedInEmail
+    GenrePreference,
+    ActorPreference,
+    loggedInEmail,
   } = context;
 
   const tenItemCard = [
     {
       title: "Director",
       list: gamificationList.DirectorList,
-      jsonList: "Director"
+      jsonList: "Director",
     },
     {
       title: "Genre",
       list: gamificationList.GenreList,
-      jsonList: "Genres"
+      jsonList: "Genres",
     },
     {
       title: "Actor",
       list: gamificationList.ActorList,
-      jsonList: "Actors"
+      jsonList: "Actors",
     },
   ];
 
   useEffect(() => {
-    setTimeout(() => {setentry(true)}, 2000)
-  }, [])
+    setTimeout(() => {
+      setentry(true);
+    }, 2000);
+  }, []);
 
   const handleNext = async () => {
-    setProgress(10)
-    const cast = ActorPreference.join(', ');
-    const crew = DirectorPreference.join(', ');
-    const genres = GenrePreference.join(', ');
+    setProgress(10);
+    const cast = ActorPreference.join(", ");
+    const crew = DirectorPreference.join(", ");
+    const genres = GenrePreference.join(", ");
 
-    console.log(typeof(cast))
-    console.log(typeof(crew))
-    console.log(typeof(genres))
-    console.log(typeof(loggedInEmail))
-
-    try{
-setProgress(25)
-const res = await axios.get("https://cinesense-hgch.onrender.com/call_homepage", {
-    params: {
-        email: loggedInEmail,
-        cast: cast,
-        crew: crew,
-        genres: genres,
-        check: 1
-    }
-});
-          setProgress(100)
-        console.log(res)        
+    try {
+      setProgress(25);
+      const res = await axios.get(
+        "https://cinesense-hgch.onrender.com/call_homepage",
+        {
+          params: {
+            email: loggedInEmail,
+            cast: cast,
+            crew: crew,
+            genres: genres,
+            check: 1,
+          },
+        }
+      );
+      setProgress(100);
+      console.log(res.data)
     } catch (e) {
-        setProgress(100)
-        console.log(e)
+      setProgress(100);
+      console.log(e);
     }
-  }
-  
+  };
+
   return (
     <>
       <div
@@ -200,8 +231,22 @@ const res = await axios.get("https://cinesense-hgch.onrender.com/call_homepage",
             </div>
           </div>
           <div className="flex items-end gap-5">
-            <div className={`text-lg cursor-pointer border border-gray-400 px-4 py-2 rounded-lg hover:border-logoColor ${entry ? "flex animate__animated animate__fadeInLeft" : "hidden"} hover:text-current`} onClick={handleNext}>Next</div>
-            <Link to="/MovieHub" className={`text-lg border border-gray-400 px-4 py-2 rounded-lg hover:border-logoColor ${entry ? "flex animate__animated animate__fadeInLeft" : "hidden"} hover:text-current`}>Skip</Link>
+            <div
+              className={`text-lg cursor-pointer border border-gray-400 px-4 py-2 rounded-lg hover:border-logoColor ${
+                entry ? "flex animate__animated animate__fadeInLeft" : "hidden"
+              } hover:text-current`}
+              onClick={handleNext}
+            >
+              Next
+            </div>
+            <Link
+              to="/MovieHub"
+              className={`text-lg border border-gray-400 px-4 py-2 rounded-lg hover:border-logoColor ${
+                entry ? "flex animate__animated animate__fadeInLeft" : "hidden"
+              } hover:text-current`}
+            >
+              Skip
+            </Link>
           </div>
         </div>
       </div>

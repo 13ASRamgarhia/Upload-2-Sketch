@@ -10,20 +10,22 @@ const LoginState = (props) => {
   const [GenrePreference, setGenrePreference] = useState([]);
   const [ActorPreference, setActorPreference] = useState([]);
 
+  const [movieDetail, setMovieDetail] = useState({})
+
   const [loggedInEmail, setLoggedInEmail] = useState("");
 
   const [gamificationList, setGamificationList] = useState({
     DirectorList: [
-      "PeteDocter",
-      "ShimakoSato",
-      "MaggieGreenwald",
-      "CyrusVoris",
-      "ShanaLarsen",
-      "JoePytka",
-      "MikeHodges",
-      "BrianPercival",
-      "CoryGoodman",
-      "PhillipNoyce"
+      "Pete Docter",
+      "Shimako Sato",
+      "Maggie Greenwald",
+      "Cyrus Voris",
+      "Shana Larsen",
+      "Joe Pytka",
+      "Mike Hodges",
+      "Brian Percival",
+      "Cory Goodman",
+      "Phillip Noyce"
     ],
     GenreList: [
       "Romance",
@@ -35,19 +37,19 @@ const LoginState = (props) => {
       "Mystery",
       "Drama",
       "Crime",
-      "ScienceFiction"
+      "Science Fiction"
     ],
     ActorList: [
-      "RolandaWatts",
-      "JackieBurroughs",
-      "JonFoster",
-      "DaveKoenig",
-      "OanaRusu",
-      "BarryCorbin",
-      "ChristianClavier",
-      "DenzelWhitaker",
-      "WilliamCondos",
-      "UlrichThomsen"
+      "Rolanda Watts",
+      "Jackie Burroughs",
+      "Jon Foster",
+      "Dave Koenig",
+      "Oana Rusu",
+      "Barry Corbin",
+      "Christian Clavier",
+      "Denzel Whitaker",
+      "William Condos",
+      "Ulrich Thomsen"
     ]
   });
 
@@ -69,7 +71,9 @@ const LoginState = (props) => {
         ActorPreference,
         setActorPreference,
         loggedInEmail,
-        setLoggedInEmail
+        setLoggedInEmail,
+        movieDetail,
+        setMovieDetail
       }}
     >
       {props.children}  

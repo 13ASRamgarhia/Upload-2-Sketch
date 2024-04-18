@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const ErrorPage = () => {
-  document.title = "Page not found | Optic eSports"
+  document.title = "Page not found | Cinesense"
   const navigate = useNavigate()
 
   const handleBackBtn = () => {

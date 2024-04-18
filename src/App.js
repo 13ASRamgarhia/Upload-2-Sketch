@@ -12,6 +12,7 @@ import Login from './Components/Login';
 import loginContext from './Context/loginContext';
 import MovieHub from './Components/MovieHub';
 import GPreferences from './Components/GPreferences';
+import MovieDetail from './Components/MovieDetail';
 
 function App() {
   const context = useContext(loginContext)
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/Login" element={ <Login /> } />
         <Route exact path="/MovieHub" element={ <MovieHub /> } />
         <Route exact path="/Prefrences" element={ <GPreferences />} />
+        <Route exact path="/MovieDetail" element={ <MovieDetail />} />
         <Route exact path="*" element={ <ErrorPage /> } />
       </Routes>
 
