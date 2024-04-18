@@ -39,7 +39,8 @@ const MovieDetail = () => {
   useEffect(() => {
     const rendering = async () => {
         try{
-            const res = await axios.get(`https://cinesense-hgch.onrender.com/movie_detail/${movieDetailName.movie_id}`)
+            console.log(movieDetailName)
+            const res = await axios.get(`https://cinesense-hgch.onrender.com/movie_detail/${movieDetailName}`)
             await setMovieDetail(res)
         }catch (e){
             console.log(e)

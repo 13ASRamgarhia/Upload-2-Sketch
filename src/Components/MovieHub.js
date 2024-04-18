@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import MovieSearchData from "../Assets/MovieSearch.json";
 import loginContext from "../Context/loginContext";
-//import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const MovieHub = () => {
   document.title = "Movie Hub | CineSense";
 
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [clickable, setClickable] = useState(false);
 
-  const { movieHub, setMovieHub } = useContext(loginContext)
+  const { movieHub, setMovieHub, setProgress, setMovieDetailName } = useContext(loginContext)
   //  const { setProgress, movieHub, setMovieHub, setMovieDetailName } = useContext(loginContext)
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,14 +28,29 @@ const MovieHub = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleGoClick = () => {
-    setSearchTerm("");
+  const handleGoClick = async () => {
+    setProgress(10)
+     setSearchTerm("");
+     try{
+      const res = await axios.get(`https://cinesense-hgch.onrender.com/recommend/${searchTerm}/25`)
+      console.log(res)
+      setProgress(100)
+      navigate("/MovieDetail")
+     } catch(e){
+      setProgress(100)
+      console.log(e)
+     }
   };
 
   const handlePosterClick = async (movie) => {
+    setProgress(25)
     try{
-console.click(movie.title_x)
+      await setMovieDetailName(movie.movie_id)
+      console.log(movie.movie_id)
+      setProgress(100)
+      navigate("/MovieDetail")
     } catch (e) {
+      setProgress(100)
       console.log(e)
     }
   }
@@ -57,8 +73,7 @@ console.click(movie.title_x)
             </div>
             <div className="desc space-y-6 text-white px-4 laptop:px-48 text-2xl w-full laptop:w-[70%] font-inter">
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa
-                a expedita hic ex voluptatum nam possimus temporibus
+                
               </p>
             </div>
           </div>
@@ -76,7 +91,7 @@ console.click(movie.title_x)
                     />
                   </div>
                   <button
-                    onClick={handleGoClick}
+                    onClick={handleGoClick()}
                     className="bg-logoColor px-4 text-xl text-white font-bold"
                     type="button"
                   >
@@ -181,7 +196,7 @@ console.click(movie.title_x)
         <div className="px-10 flex flex-col">
             <div className="relative flex flex-col">
                 <div className="text-3xl font-bold spacing tracking-wide">
-                    Other Popular Movies
+                    Trending Movies
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
                 {movieHub.crew.map(movie => (

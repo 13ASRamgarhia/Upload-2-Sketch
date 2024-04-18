@@ -6,7 +6,7 @@ import gamification from "../Assets/gamification.json";
 import { fadeIn, textVariant } from "./utils/motion";
 import SectionWrapper from "./hoc/SectionWrapper";
 import loginContext from "../Context/loginContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const PrefrencesCard = ({ index, title, list, jsonList }) => {
