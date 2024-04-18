@@ -18,7 +18,6 @@ const Navbar = () => {
     setProgress(10)
     setLoggedIn(false)
     setLoggedInEmail("")
-    console.log(`${loggedInEmail} logged out`)
     setProgress(100)
   }
 
