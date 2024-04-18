@@ -9,7 +9,7 @@ const MovieDetail = () => {
 
   const { movieDetail } = useContext(loginContext);
 
-  const genreList = movieDetail.genres.split(", ");
+  const genreList = movieDetail.genres.split(",");
   const castList = movieDetail.cast.split(",");
   const crewList = movieDetail.crew.split(",");
 

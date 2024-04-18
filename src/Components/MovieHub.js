@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MovieSearchData from "../Assets/MovieSearch.json";
 import axios from "axios";
 import loginContext from "../Context/loginContext";
@@ -9,7 +9,7 @@ const MovieHub = () => {
 
   const navigate = useNavigate()
 
-  const { setMovieDetail, setProgress, movieHub } = useContext(loginContext)
+  const { setMovieDetail, setProgress, movieHub, setMovieHub } = useContext(loginContext)
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -32,6 +32,14 @@ const MovieHub = () => {
       console.log(e)
     }
   }
+
+  useEffect(() => {
+    const rendering = async () => {
+       await setMovieHub(movieHub)
+    }
+    rendering();
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="py-14 min-h-screen ">
