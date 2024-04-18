@@ -6,7 +6,7 @@ import gamification from "../Assets/gamification.json";
 import { fadeIn, textVariant } from "./utils/motion";
 import SectionWrapper from "./hoc/SectionWrapper";
 import loginContext from "../Context/loginContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const PrefrencesCard = ({ index, title, list, jsonList }) => {
@@ -143,6 +143,7 @@ const PrefrencesCard = ({ index, title, list, jsonList }) => {
 
 const GPreferences = () => {
   const [entry, setentry] = useState(false);
+  const navigate = useNavigate()
 
   const context = useContext(loginContext);
   const {
@@ -209,6 +210,7 @@ const GPreferences = () => {
       );
       setProgress(100);
       setMovieHub(res.data)
+      navigate("/MovieHub")
     } catch (e) {
       setProgress(100);
       console.log(e);
