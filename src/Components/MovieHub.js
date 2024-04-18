@@ -25,21 +25,6 @@ const MovieHub = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleGoClick = async () => {
-    setProgress(10);
-    setSearchTerm("");
-    try {
-      const res = await axios.get(
-        `https://cinesense-hgch.onrender.com/recommend/${searchTerm}/25`
-      );
-      console.log(res);
-      setProgress(100);
-    } catch (e) {
-      setProgress(100);
-      console.log(e);
-    }
-  };
-
   useEffect(() => {
     const rendering = async () => {
       await setMovieHub(movieHub);
@@ -74,7 +59,20 @@ const MovieHub = () => {
                     />
                   </div>
                   <button
-                    onClick={handleGoClick()}
+                    onClick={async () => {
+                      setProgress(10);
+                      setSearchTerm("");
+                      try {
+                        const res = await axios.get(
+                          `https://cinesense-hgch.onrender.com/recommend/${searchTerm}/25`
+                        );
+                        console.log(res);
+                        setProgress(100);
+                      } catch (e) {
+                        setProgress(100);
+                        console.log(e);
+                      }
+                    }}
                     className="bg-logoColor px-4 text-xl text-white font-bold"
                     type="button"
                   >
