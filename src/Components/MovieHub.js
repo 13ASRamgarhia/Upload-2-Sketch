@@ -12,6 +12,7 @@ const MovieHub = () => {
   //  const { setProgress, movieHub, setMovieHub, setMovieDetailName } = useContext(loginContext)
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [recommendedMovies, setRecommendedMovies] = useState();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -66,7 +67,7 @@ const MovieHub = () => {
                         const res = await axios.get(
                           `https://cinesense-hgch.onrender.com/recommend/${searchTerm}/25`
                         );
-                        console.log(res);
+                        setRecommendedMovies(res.data);
                         setProgress(100);
                       } catch (e) {
                         setProgress(100);
@@ -112,112 +113,145 @@ const MovieHub = () => {
           </div>
         </div>
       </div>
-
-      <div className="pt-10">
-        <div className="px-10 flex flex-col">
-          <div className="relative flex flex-col">
-            <div className="text-3xl font-bold spacing tracking-wide">
-              Popular Movies by Director
-            </div>
-            <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-              {movieHub.crew.map((movie) => (
-                <div className="flex">
-                  <button
-                    type="button"
-                    disabled={!clickable}
-                    className="w-auto h-48 mr-4 cursor-pointer"
-                  >
-                    <img
-                      key={movie.movie_id}
-                      src={movie.poster}
-                      alt={movie.title_x}
-                      className="w-auto h-48 mr-4 cursor-pointer"
-                    />
-                  </button>
+      {recommendedMovies ? (
+        <>
+          <div className="pt-10">
+            <div className="px-10 flex flex-col">
+              <div className="relative flex flex-col">
+                <div className="text-3xl font-bold spacing tracking-wide">
+                  Movies related to {searchTerm}
                 </div>
-              ))}
+                <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
+                  {recommendedMovies.map((movie) => (
+                    <div className="flex">
+                      <button
+                        type="button"
+                        disabled={!clickable}
+                        className="w-auto h-48 mr-4 cursor-pointer"
+                      >
+                        <img
+                          key={movie.movie_id}
+                          src={movie.poster}
+                          alt={movie.title_x}
+                          className="w-auto h-48 mr-4 cursor-pointer"
+                        />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <>
+          <div className="pt-10">
+            <div className="px-10 flex flex-col">
+              <div className="relative flex flex-col">
+                <div className="text-3xl font-bold spacing tracking-wide">
+                  Popular Movies by Director
+                </div>
+                <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
+                  {movieHub.crew.map((movie) => (
+                    <div className="flex">
+                      <button
+                        type="button"
+                        disabled={!clickable}
+                        className="w-auto h-48 mr-4 cursor-pointer"
+                      >
+                        <img
+                          key={movie.movie_id}
+                          src={movie.poster}
+                          alt={movie.title_x}
+                          className="w-auto h-48 mr-4 cursor-pointer"
+                        />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <div className="pt-10">
-        <div className="px-10 flex flex-col">
-          <div className="relative flex flex-col">
-            <div className="text-3xl font-bold spacing tracking-wide">
-              Popular Movies by Actor/Actress
-            </div>
-            <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-              {movieHub.cast.map((movie) => (
-                <button
-                  type="button"
-                  disabled={!clickable}
-                  className="w-auto h-48 mr-4 cursor-pointer"
-                >
-                  <img
-                    key={movie.movie_id}
-                    src={movie.poster}
-                    alt={movie.title_x}
-                    className="w-auto h-48 mr-4 cursor-pointer"
-                  />
-                </button>
-              ))}
+          <div className="pt-10">
+            <div className="px-10 flex flex-col">
+              <div className="relative flex flex-col">
+                <div className="text-3xl font-bold spacing tracking-wide">
+                  Popular Movies by Actor/Actress
+                </div>
+                <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
+                  {movieHub.cast.map((movie) => (
+                    <button
+                      type="button"
+                      disabled={!clickable}
+                      className="w-auto h-48 mr-4 cursor-pointer"
+                    >
+                      <img
+                        key={movie.movie_id}
+                        src={movie.poster}
+                        alt={movie.title_x}
+                        className="w-auto h-48 mr-4 cursor-pointer"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="pt-10">
-        <div className="px-10 flex flex-col">
-          <div className="relative flex flex-col">
-            <div className="text-3xl font-bold spacing tracking-wide">
-              Popular Movies by Genre
-            </div>
-            <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-              {movieHub.genres.map((movie) => (
-                <button
-                  type="button"
-                  disabled={!clickable}
-                  className="w-auto h-48 mr-4 cursor-pointer"
-                >
-                  <img
-                    key={movie.movie_id}
-                    src={movie.poster}
-                    alt={movie.title_x}
-                    className="w-auto h-48 mr-4 cursor-pointer"
-                  />
-                </button>
-              ))}
+          <div className="pt-10">
+            <div className="px-10 flex flex-col">
+              <div className="relative flex flex-col">
+                <div className="text-3xl font-bold spacing tracking-wide">
+                  Popular Movies by Genre
+                </div>
+                <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
+                  {movieHub.genres.map((movie) => (
+                    <button
+                      type="button"
+                      disabled={!clickable}
+                      className="w-auto h-48 mr-4 cursor-pointer"
+                    >
+                      <img
+                        key={movie.movie_id}
+                        src={movie.poster}
+                        alt={movie.title_x}
+                        className="w-auto h-48 mr-4 cursor-pointer"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="pt-10">
-        <div className="px-10 flex flex-col">
-          <div className="relative flex flex-col">
-            <div className="text-3xl font-bold spacing tracking-wide">
-              Trending Movies
-            </div>
-            <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-              {movieHub.crew.map((movie) => (
-                <button
-                  type="button"
-                  disabled={!clickable}
-                  className="w-auto h-48 mr-4 cursor-pointer"
-                >
-                  <img
-                    key={movie.movie_id}
-                    src={movie.poster}
-                    alt={movie.title_x}
-                    className="w-auto h-48 mr-4 cursor-pointer"
-                  />
-                </button>
-              ))}
+          <div className="pt-10">
+            <div className="px-10 flex flex-col">
+              <div className="relative flex flex-col">
+                <div className="text-3xl font-bold spacing tracking-wide">
+                  Trending Movies
+                </div>
+                <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
+                  {movieHub.crew.map((movie) => (
+                    <button
+                      type="button"
+                      disabled={!clickable}
+                      className="w-auto h-48 mr-4 cursor-pointer"
+                    >
+                      <img
+                        key={movie.movie_id}
+                        src={movie.poster}
+                        alt={movie.title_x}
+                        className="w-auto h-48 mr-4 cursor-pointer"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };
