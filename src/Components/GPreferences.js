@@ -105,12 +105,9 @@ const PrefrencesCard = ({ index, title, list, jsonList }) => {
                 const modifiedSelectedItems = selectedItems.map(item => {
                     let modifiedItem = '';
                     for (let i = 0; i < item.length; i++) {
-                      // Check if the current character is a capital letter
                       if (item[i] === item[i].toUpperCase()) {
-                        // Add a space before the capital letter
                         modifiedItem += ' ';
                       }
-                      // Add the current character to the modified item
                       modifiedItem += item[i];
                     }
                     return modifiedItem;
@@ -183,11 +180,19 @@ const GPreferences = () => {
 
   const handleNext = async () => {
     setProgress(10);
-    const cast = ActorPreference.join(", ");
-    const crew = DirectorPreference.join(", ");
-    const genres = GenrePreference.join(", ");
+
+    const modifiedActorPreference = ActorPreference.map(item => item.replace(/\s/g, ''));
+    const modifiedDirectorPreference = DirectorPreference.map(item => item.replace(/\s/g, ''));
+    const modifiedGenrePreference = GenrePreference.map(item => item.replace(/\s/g, ''));
+
+    const cast = modifiedActorPreference.join(", ");
+    const crew = modifiedDirectorPreference.join(", ");
+    const genres = modifiedGenrePreference.join(", ");
 
     try {
+        console.log(cast)
+        console.log(modifiedDirectorPreference)
+        console.log(modifiedGenrePreference)
       setProgress(25);
       const res = await axios.get(
         "https://cinesense-hgch.onrender.com/call_homepage",
