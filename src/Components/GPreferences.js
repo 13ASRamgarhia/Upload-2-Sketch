@@ -180,6 +180,19 @@ const GPreferences = () => {
     }, 2000);
   }, []);
 
+  const handleSkip = async () => {
+    setProgress(25);
+
+    try{
+        const res = await axios.get(`https://cinesense-hgch.onrender.com/call_homepage_by_mail/${loggedInEmail}`)
+        setProgress(100);
+        setMovieHub(res.data)
+        navigate("/MovieHub")
+    } catch (e) {
+        console.log(e)
+    }
+  }
+
   const handleNext = async () => {
     setProgress(10);
 
@@ -192,9 +205,6 @@ const GPreferences = () => {
     const genres = modifiedGenrePreference.join(", ");
 
     try {
-        console.log(cast)
-        console.log(modifiedDirectorPreference)
-        console.log(modifiedGenrePreference)
       setProgress(25);
       const res = await axios.get(
         "https://cinesense-hgch.onrender.com/call_homepage",
@@ -247,14 +257,13 @@ const GPreferences = () => {
             >
               Next
             </div>
-            <Link
-              to="/MovieHub"
+            <div onClick={handleSkip}
               className={`text-lg border border-gray-400 px-4 py-2 rounded-lg hover:border-logoColor ${
                 entry ? "flex animate__animated animate__fadeInLeft" : "hidden"
               } hover:text-current`}
             >
               Skip
-            </Link>
+            </div>
           </div>
         </div>
       </div>
