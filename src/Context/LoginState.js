@@ -14,7 +14,9 @@ const LoginState = (props) => {
 
   const [movieDetail, setMovieDetail] = useState({})
 
-  const [loggedInEmail, setLoggedInEmail] = useState("");
+  const [loggedInEmail, setLoggedInEmail] = useState("email");
+
+  const [movieDetailName, setMovieDetailName] = useState({})
 
   const [gamificationList, setGamificationList] = useState({
     DirectorList: [
@@ -77,7 +79,9 @@ const LoginState = (props) => {
         movieDetail,
         setMovieDetail,
         movieHub,
-        setMovieHub
+        setMovieHub,
+        movieDetailName,
+        setMovieDetailName
       }}
     >
       {props.children}  

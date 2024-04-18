@@ -17,7 +17,7 @@ const Navbar = () => {
   const handleLogout = () => {
     setProgress(10)
     setLoggedIn(false)
-    setLoggedInEmail("")
+    setLoggedInEmail("email")
     setProgress(100)
   }
 

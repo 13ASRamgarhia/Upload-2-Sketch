@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import MovieSearchData from "../Assets/MovieSearch.json";
-import axios from "axios";
 import loginContext from "../Context/loginContext";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +8,7 @@ const MovieHub = () => {
 
   const navigate = useNavigate()
 
-  const { setMovieDetail, setProgress, movieHub, setMovieHub } = useContext(loginContext)
+  const { setProgress, movieHub, setMovieHub, setMovieDetailName } = useContext(loginContext)
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -24,9 +23,7 @@ const MovieHub = () => {
   const handlePosterClick = async (movie) => {
     try{
       setProgress(10)
-      const res = await axios.get(`https://cinesense-hgch.onrender.com/movie_detail/${movie.movie_id}`)
-      setMovieDetail(res)
-      setProgress(100)
+      await setMovieDetailName(movie)
       navigate("/MovieDetail")
     } catch (e) {
       console.log(e)
@@ -119,13 +116,12 @@ const MovieHub = () => {
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
                 {movieHub.crew.map(movie => (
-                    <img
+                    <button type="button" onClick={handlePosterClick(movie)} className="w-auto h-48 mr-4 cursor-pointer"><img
                     key={movie.movie_id}
                     src={movie.poster}
                     alt={movie.title_x}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    onClick={handlePosterClick(movie)}
-                    />
+                    /></button>
                 ))}
                 </div>
             </div>
@@ -136,17 +132,16 @@ const MovieHub = () => {
         <div className="px-10 flex flex-col">
             <div className="relative flex flex-col">
                 <div className="text-3xl font-bold spacing tracking-wide">
-                    Popular Movies by Actor
+                    Popular Movies by Actor/Actress
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
                 {movieHub.cast.map(movie => (
-                    <img
-                    key={movie.id}
+                    <button type="button" onClick={handlePosterClick(movie)} className="w-auto h-48 mr-4 cursor-pointer"><img
+                    key={movie.movie_id}
                     src={movie.poster}
-                    alt={movie.title}
+                    alt={movie.title_x}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    onClick={handlePosterClick(movie)}
-                    />
+                    /></button>
                 ))}
                 </div>
             </div>
@@ -161,13 +156,12 @@ const MovieHub = () => {
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
                 {movieHub.genres.map(movie => (
-                    <img
-                    key={movie.id}
+                    <button type="button" onClick={handlePosterClick(movie)} className="w-auto h-48 mr-4 cursor-pointer"><img
+                    key={movie.movie_id}
                     src={movie.poster}
-                    alt={movie.title}
+                    alt={movie.title_x}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    onClick={handlePosterClick(movie)}
-                    />
+                    /></button>
                 ))}
                 </div>
             </div>
@@ -181,14 +175,13 @@ const MovieHub = () => {
                     Other Popular Movies
                 </div>
                 <div className="scroll-smooth overflow-x-auto scrollbar whitespace-nowrap max-w-full py-4 flex items-center">
-                {movieHub.genres.map(movie => (
-                    <img
-                    key={movie.id}
+                {movieHub.crew.map(movie => (
+                    <button type="button" onClick={handlePosterClick(movie)} className="w-auto h-48 mr-4 cursor-pointer"><img
+                    key={movie.movie_id}
                     src={movie.poster}
-                    alt={movie.title}
+                    alt={movie.title_x}
                     className="w-auto h-48 mr-4 cursor-pointer"
-                    onClick={handlePosterClick(movie)}
-                    />
+                    /></button>
                 ))}
                 </div>
             </div>
