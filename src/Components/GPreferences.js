@@ -153,14 +153,15 @@ const GPreferences = () => {
     const cast = ActorPreference.join(', ');
     const crew = DirectorPreference.join(', ');
     const genres = GenrePreference.join(', ');
-    
+
     try{
 setProgress(25)
         const res = await axios.get(`https://cinesense-hgch.onrender.com/call_homepage`, {
             email: loggedInEmail,
             cast: cast,
             crew: crew,
-            genres: genres
+            genres: genres,
+            check: 1
           }
           );
           setProgress(100)
